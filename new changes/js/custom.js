@@ -261,19 +261,11 @@ $("body").ready(function () {
       offset =
         (percentMouse / 100) * slidesWidth - (percentMouse / 100) * docWidth;
 
+    console.log(offset / 10);
+
     $images.css({
-      "-webkit-transform":
-        "translate3d(" +
-        offset / 20 +
-        "px,0,0) rotateY(" +
-        offset / 100 +
-        "deg)",
-      transform:
-        "translate3d(" +
-        offset / 20 +
-        "px,0,0) rotateY(" +
-        offset / 100 +
-        "deg)",
+      "-webkit-transform": `perspective(50px) rotateY(${offset / 600}deg)`,
+      transform: `perspective(50px) rotateY(${offset / 600}deg)`,
     });
   });
 
@@ -387,7 +379,6 @@ $("body").ready(function () {
   $(".close-s").on("click", function () {
     const current = $(".slick-current")[0];
     const attr = $(current).attr("aria-describedby");
-
     let timer = 0;
 
     timer = attr === "slick-slide00" ? 0 : 500;
@@ -405,6 +396,7 @@ $("body").ready(function () {
       setTimeout(function () {
         $(".main-body-content").addClass("inner5");
       }, 500);
+      const section = $(".hero-sec > div > div")[0];
       $(".hero-sec > div > div").addClass("scale-out").removeClass("scale-in");
 
       $(".menu-navigation").fadeOut("fast").removeClass("visi");
