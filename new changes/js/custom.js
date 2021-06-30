@@ -498,39 +498,53 @@ $(function () {
   });
 
   let timer = 60;
-  for (let i = 0; i < heading.length; i++) {
-    const element = heading[i];
-    const spans = $(element).find(".leter span");
 
-    for (let j = 0; j < spans.length; j++) {
-      const span = spans[j];
-      $(span).mouseover(function () {
-        $(this).css("transform", "translateY(-14px)");
-      });
+  setTimeout(function () {
+    for (let i = 0; i < heading.length; i++) {
+      const element = heading[i];
+      const spans = $(element).find(".leter span");
 
-      $(span).mouseout(function () {
-        const ref = this;
-        setTimeout(function () {
-          $(ref).css("transform", "translateY(0)");
-        }, 150);
-      });
+      for (let j = 0; j < spans.length; j++) {
+        const span = spans[j];
+        $(span).mouseover(function () {
+          $(this).css("transform", "translateY(-14px)");
+        });
 
-      moveHeadingUp(span, timer);
-      moveHeadingDown(span, timer);
-      timer += 60;
+        $(span).mouseout(function () {
+          const ref = this;
+          setTimeout(function () {
+            $(ref).css("transform", "translateY(0)");
+          }, 150);
+        });
+
+        moveHeadingUp(span, timer);
+        moveHeadingDown(span, timer + 60);
+        moveHeadingCenter(span, timer + 300);
+        timer += 60;
+      }
     }
-  }
+    moveHeadingUp(small, timer);
+    moveHeadingDown(small, timer + 60);
+    moveHeadingCenter(small, timer + 300);
+  }, 1000);
 });
 
 function moveHeadingUp(span, timer) {
   setTimeout(function () {
+    $(span).css("opacity", "1");
     $(span).css("transform", "translateY(-20px)");
   }, timer);
 }
 
 function moveHeadingDown(span, timer) {
   setTimeout(function () {
-    $(span).mouseout();
+    $(span).css("transform", "translateY(10px)");
+  }, timer);
+}
+
+function moveHeadingCenter(span, timer) {
+  setTimeout(function () {
+    $(span).css("transform", "translateY(0px)");
   }, timer);
 }
 
